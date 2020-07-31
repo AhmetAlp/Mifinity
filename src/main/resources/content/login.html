@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+ 
+  <head>
+ 
+    <meta charset="utf-8"> 
+    <title>Login Form</title>
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="login.js"></script>
+   
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">      
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  </head>
+ 
+  <body ng-app="postExample" ng-controller="PostController as postCtrl">
+ 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+	  <div class="container">
+	    <form class="login-form" ng-submit="postCtrl.postForm()">
+	
+	      <h2>Please sign in</h2>
+	
+	      <label for="inputUsername" class="sr-only">Username</label>
+	      <input type="text" id="inputUsername" class="form-control" placeholder="Username" required ng-model="postCtrl.loginData.username">
+	
+	      <label for="inputPassword" class="sr-only">Password</label>
+	      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="postCtrl.loginData.password">
+	
+	    <br>
+	
+	    <div class="alert alert-danger" role="alert" ng-show="errorMsg">{{errorMsg}}</div>
+	      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	    </form>
+	
+		<a href="#addUserModal" class="btn btn-success" data-toggle="modal">
+			<i class="material-icons">&#xE147;</i> 
+			<span>Register</span>
+		</a>
+	    
+		<!-- Add Modal HTML -->
+		<div id="addUserModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<form id='userAddForm' name='userAddForm'>
+						<div class="modal-header">						
+							<h4 class="modal-title">Register</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">					
+							<div class="form-group">
+								<label>User Name</label>
+								<input ng-model="newUser.username" type="text" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Password</label>
+								<input name="pass1" ng-model="newUser.password" type="password" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label>Confirm Password</label>
+								<input name="pass2" ng-model="password2" type="password" class="form-control" required>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input id="registerCancel" type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+							<input type="button" class="btn btn-success" value="Register" ng-click ="postCtrl.addUser()">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	         
+	</div>
+ 
+  </body>
+</html>
