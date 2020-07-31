@@ -1,0 +1,147 @@
+<div ng-scope="angularModular.home">
+	<input type="button" class="btn btn-default" value="Logout" ng-click="logout()">
+	<div class="table-wrapper">
+		<div class="table-title">
+			<div class="row">
+				<div class="col-sm-6">
+					<h2>Cards</h2>
+				</div>
+				<div class="col-sm-6"></div>
+			</div>
+		</div>
+		<div style="height: 60vh; overflow-y: scroll;">
+			<label>Credit Card Number: <input ng-model="searchText" value=" "/></label>
+			<input type="button" value="Search" ng-click="searchCards()">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Card Number</th>
+						<th>Card Holder Name</th>
+						<th>Expiry Date</th>
+						<th>Operations</th>
+					</tr>
+				</thead>
+				<tbody id='cardTableBody'>
+					<tr ng-repeat="row in cardList">
+						<td></td>
+						<td>{{row.number}}</td>
+						<td>{{row.holderName}}</td>
+						<td>{{row.expiryDate}}</td>
+						<td>
+							<a href="#editCardModal" class="edit" data-toggle="modal" ng-click="getCardValues(row)">
+								<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+							</a>
+							<a href="#deleteCardModal" class="edit" data-toggle="modal" ng-click="getCardValues(row)">
+								<i class="material-icons" data-toggle="tooltip" title="Delete">&#xe14c;</i>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div style="height: 20px;"></div>
+		<div class="table-title">
+			<div class="row">
+				<div class="col-sm-6"></div>
+				<div class="col-sm-6">
+					<a href="#addCardModal" class="btn btn-success" data-toggle="modal">
+						<i class="material-icons">&#xE147;</i> 
+						<span>Add New Card</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<!-- Add Modal HTML -->
+	<div id="addCardModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id='cardAddForm' name='cardAddForm'>
+					<div class="modal-header">						
+						<h4 class="modal-title">Add Card</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<div class="form-group">
+							<label>Card Number</label>
+							<input ng-model="newCard.number" type="text" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Card Holder Name</label>
+							<input ng-model="newCard.holderName" type="text" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Expiry Date</label>
+							<input ng-pattern="dateRegex" ng-model="newCard.expiryDate" name="expDate" type="text" class="form-control" required>
+							<p style="color:red" ng-show="!cardAddForm.expDate.$valid">Not valid. Fill in YY/MM format</p>							
+						</div>					
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input ng-disabled="!cardAddForm.expDate.$valid" type="button" class="btn btn-success" value="Add" ng-click ="addCard()">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+		
+	<!-- Edit Modal HTML -->
+	<div id="editCardModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id='cardEditForm' name='cardEditForm'>
+					<div class="modal-header">						
+						<h4 class="modal-title">Card Details</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">	
+						<div class="form-group">
+							<label>Card Number</label>
+							<input ng-readonly="true" ng-model="updCard.number" type="text" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Card Holder Name</label>
+							<input ng-readonly="true" ng-model="updCard.holderName" type="text" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Expiry Date</label>
+							<input name="expDate" ng-pattern="dateRegex" ng-model="updCard.expiryDate" type="text" class="form-control" required>
+							<p style="color:red" ng-show="!cardEditForm.expDate.$valid">Not valid. Fill in YY/MM format</p>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input id="updateCardCancel" type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input ng-disabled="!cardEditForm.expDate.$valid" id="updBtn" type="button" class="btn btn-success" value="Update" ng-click ="updateCard()">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+		
+	<!-- Delete Modal HTML -->
+	<div id="deleteCardModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id='delCardForm'>
+					<div class="modal-header">						
+						<h4 class="modal-title">Delete Card</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<input ng-model="updVehicle.id" type="hidden" class="form-control" required>
+						<p>Are you sure you want to delete the Record?</p>
+						<p class="text-warning"><small>This action cannot be undone.</small></p>
+					</div>
+					<div class="modal-footer">
+						<input id="deleteCardCancel" type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="button" class="btn btn-danger" value="Delete" ng-click ="deleteCard()">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+		
+</div>
