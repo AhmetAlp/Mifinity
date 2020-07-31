@@ -3,7 +3,6 @@
 ### Running the application
 1. Current config runs for mySQL/MariaDB. Create schema and update application.properties according to your db settings.
 2. Extract mariadb10.4.10 from MifinityCodeAssign_Runtime.zip
-
   2.1. Open a command prompt
   2.2. cd extracted_path/mariadb10.4.10/bin
   2.3. run mysqld.exe from command prompt
