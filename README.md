@@ -9,6 +9,7 @@
   2.2. cd extracted_path/mariadb10.4.10/bin
   
   2.3. run mysqld.exe from command prompt
+  
 3. Run java -jar mifinity_codeassign.jar as a Spring Boot app
 4. Open [http://localhost:8080/static/login.html](http://localhost:8080/static/login.html)
 
