@@ -12,6 +12,7 @@
   
 3. Run java -jar mifinity_codeassign.jar as a Spring Boot app
 4. Open [http://localhost:8080/static/login.html](http://localhost:8080/static/login.html)
+5. Note: Sample prepared username = Ahmet , password = 1234
 
 ## Application capabilities
 1. Log in
